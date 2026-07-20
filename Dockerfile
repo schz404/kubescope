@@ -5,6 +5,11 @@
 # Built from a lightweight and slim distro
 FROM debian:12-slim
 
+# For the entrypoint .sh file:
+COPY entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+ENTRYPOINT ["/entrypoint.sh"]
+
 # Installation of tools needed for analysis/ debugging
 # **** (WILL CHANGE DEPENDING ON THE TOOLS NEEDED FOR THE ANALYSIS) ****
 RUN apt-get update && apt-get install -y --no-install-recommends \
