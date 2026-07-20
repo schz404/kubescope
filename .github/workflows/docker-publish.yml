@@ -1,4 +1,4 @@
-name: Build and Publish Forensic Image
+name: Build and Publish Kubescope
 
 on:
   push:
@@ -26,4 +26,4 @@ jobs:
         with:
           context: ./
           push: true
-          tags: ghcr.io/${{ github.repository_owner }}/forensic-tool:latest
+          tags: ghcr.io/${{ github.repository_owner }}/kubescope:latest
