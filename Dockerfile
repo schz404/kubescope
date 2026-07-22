@@ -23,8 +23,8 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     tree vim-tiny \
     && rm -rf /var/lib/apt/lists/*
 
-# For security policy, setting a non-root user
-USER 1000:1000
+# For security policy, setting a non-root user (comment this line if needed)
+# USER 1000:1000
 
 # Default command to start a shell
 CMD ["/bin/bash"]
