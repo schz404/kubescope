@@ -11,7 +11,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
     # Network
     tcpdump tshark ngrep lsof net-tools iproute2 \
     # System & Process
-    strace procps htop ltrace \
+    strace procps htop \
     # Binary & Analysis
     binutils gdb file \
     # Misc
