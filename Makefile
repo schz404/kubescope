@@ -1,21 +1,21 @@
-# Makefile for Forensic Tool
-IMAGE_NAME=kubescope
-REGISTRY=ghcr.io
-USERNAME=schz404
-TAG=latest
-FULL_IMAGE=$(REGISTRY)/$(USERNAME)/$(IMAGE_NAME):$(TAG)
+.PHONY: build-x86 build-arm64 build-all push all
 
-# Build the image locally
-build:
-	docker build -t $(FULL_IMAGE) ./kubescope
+# Build Vars
+IMAGENAME ?= ghcr.io/schz404/kubescope
+VERSION ?= latest
 
-# Push to GitHub Container Registry (requires 'docker login')
+.DEFAULT_GOAL := all
+
+build-x86:
+	@docker build --platform linux/amd64 -t $(IMAGENAME):$(VERSION) .
+
+build-arm64:
+	@docker build --platform linux/arm64 -t $(IMAGENAME):$(VERSION) .
+
+build-all:
+	@docker buildx build --platform linux/amd64,linux/arm64 --output "type=image,push=false" --file ./Dockerfile .
+
 push:
-	docker push $(FULL_IMAGE)
+	@docker push $(IMAGENAME):$(VERSION)
 
-# Combined command to build and push
-all: build push
-
-# Clean up local image to save space
-clean:
-	docker rmi $(FULL_IMAGE)
+all: build-all
