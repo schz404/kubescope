@@ -1,25 +1,26 @@
-# Ephemeral container: debugging container
-# with custom forensic/ analysis tools
-# Meant to be injected inside a compromised distroless compromised
+# Ephemeral container: forensic container with custom analysis tools
+# Meant to be injected inside a compromised distroless Pod
 
-# Built from a lightweight and slim distro
 FROM debian:12-slim
+ENV DEBIAN_FRONTEND=noninteractive
 
-# Installation of tools needed for analysis/ debugging
-# **** (WILL CHANGE DEPENDING ON THE TOOLS NEEDED FOR THE ANALYSIS) ****
+# Install essential DFIR and diagnostic utilities
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    # Network
-    tcpdump tshark ngrep lsof net-tools iproute2 \
-    # System & Process
-    strace procps htop \
-    # Binary & Analysis
-    binutils gdb file \
-    # Misc
-    tree vim-tiny \
+    procps \
+    lsof \
+    net-tools \
+    iproute2 \
+    iputils-ping \
+    strace \
+    gdb \
+    htop \
+    tree \
+    file \
+    tcpdump \
+    tshark \
+    e2fsprogs \
+    util-linux \
     && rm -rf /var/lib/apt/lists/*
-
-# For security policy, setting a non-root user (comment this line if needed)
-# USER 1000:1000
 
 # Default command to start a shell
 CMD ["/bin/bash"]
