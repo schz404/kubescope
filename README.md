@@ -29,5 +29,4 @@ This PoC utilizes:
 ## Quick Start
 
 ```bash
-make build
 kubectl debug -it <pod> --image=ghcr.io/schz404/kubescope:latest --target=<container>
