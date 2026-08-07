@@ -44,6 +44,13 @@ jobs:
           image: '${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest'
           output-file: 'sbom.json'
 
+      - name: Scan SBOM for Vulnerabilities using Grype
+        uses: anchore/scan-action@v3
+        with:
+          sbom: 'sbom.json'
+          fail-build: true
+          severity: 'critical,high'
+
       - name: Upload SBOM artifact
         uses: actions/upload-artifact@v4
         with:
