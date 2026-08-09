@@ -8,14 +8,15 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y --no-install-recommends \
     procps \
     lsof \
-    net-tools \
     iproute2 \
     iputils-ping \
     strace \
-    gdb \
     htop \
     tree \
     file \
+    jq \
+    yara \
+    curl \
     tcpdump \
     tshark \
     e2fsprogs \
