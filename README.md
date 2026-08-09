@@ -29,4 +29,4 @@ This PoC utilizes:
 ## Quick Start
 
 ```bash
-kubectl debug -it <pod> --image=ghcr.io/schz404/kubescope:latest --target=<container>
+kubectl debug -it <pod> --image=ghcr.io/schz404/kubescope:latest --target=<container> --profile=sysadmin
