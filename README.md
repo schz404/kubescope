@@ -33,7 +33,7 @@ kubectl debug -it <pod> --image=ghcr.io/schz404/kubescope:latest --target=<conta
 ## Notes
 The `profile` flag can be skipped, but some of the tools that require this flag may not be able to work properly if skipped.
 
-Ephemeral containers can introduce vulnerabilities into a Kubernetes cluster. RBAC configuration for the specific `/ephemeralcontainers` subresource is recommended, as the use of ephemeral containers is allowed by default when creating a cluster. Make sure to configure to grant ephemeral containers privileges/permissions only to the roles/actors needed (e.g. security analyst role).
+Ephemeral containers can introduce vulnerabilities into a Kubernetes cluster. RBAC configuration for the specific `/ephemeralcontainers` subresource is recommended, as the use of ephemeral containers is allowed by default when creating a cluster. Make sure to configure and grant ephemeral containers privileges/permissions only to the roles/actors needed (e.g. security analyst role).
 
 ALWAYS terminate the ephemeral container session (`exit`) after the analysis is concluded, as leaving it open not only defeats the purpose of using a distroless image, but also leaves the perfect attack vector to take advantage of, if ever found by an adversary.
 
