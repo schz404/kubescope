@@ -3,11 +3,6 @@
 ## Overview
 Kubescope is a forensic image containing multiple tools to perform forensic analysis inside a Kubernetes cluster, specifically for distroless images that lack a standard shell and debugging utilities. The forensic image can be injected as an ephemeral container using the `kubectl debug` command. The specific command can be found below in the Quick Start section.
 
-## Architecture
-The PoC for my thesis utilizes:
-1.  **Victim Pod:** A minimal, distroless Go application, hosted on a separate repo (private).
-2.  **Forensic Agent:** A custom-built, forensic image (`kubescope`) containing multiple tools (listed below).
-
 ## Tools installed in the forensic image
     procps
     lsof
@@ -29,6 +24,9 @@ The PoC for my thesis utilizes:
 ```bash
 kubectl debug -it <pod> --image=ghcr.io/schz404/kubescope:latest --target=<container> --profile=sysadmin
 ```
+
+## Compatability
+The forensic image has been tested and currently works on minikube (local) and Google Kubernetes Engine or GKE (cloud). The forensic toolkit should work on any other Kubernetes environment though, as ephemeral containers are native to Kubernetes. 
 
 ## Notes
 The `profile` flag can be skipped, but some of the tools that require this flag may not be able to work properly if skipped.
